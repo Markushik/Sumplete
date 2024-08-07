@@ -1,0 +1,36 @@
+[project]
+name = "sumplete"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Markushik", email = "zem_mark@yahoo.com" }
+]
+dependencies = [
+    "aiogram-dialog==2.2.0a5",
+    "sqlalchemy>=2.0.32",
+    "asyncpg>=0.29.0",
+    "structlog>=24.4.0",
+    "dynaconf[redis]>=3.2.6",
+    "numpy>=2.0.1",
+    "adaptix>=3.0.0b7",
+    "fluent-runtime>=0.4.0",
+    "alembic>=1.13.2",
+    "dishka>=1.2.0",
+    "pendulum>=3.0.0",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sumplete"]

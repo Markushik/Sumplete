@@ -1,0 +1,40 @@
+from aiogram_dialog import Dialog, Window
+from aiogram_dialog.widgets.kbd import Button, Row, Toggle, ListGroup
+from aiogram_dialog.widgets.text import Format, Const
+
+from src.presentation.tgbot.dialogs.dialog_extras.group.custom import CustomGroup
+from src.presentation.tgbot.dialogs.dialog_extras.i18n.format import I18nFormat
+from src.presentation.tgbot.dialogs.game_menu.getter import getter
+from src.presentation.tgbot.states.user import GameMenu
+
+
+def game_menu() -> Dialog:
+    return Dialog(
+        Window(
+            I18nFormat('play-msg'),
+            CustomGroup(
+                ListGroup(
+                    Toggle(
+                        Format('{item[value]}'),
+                        id='toggle',
+                        item_id_getter=lambda item: item['id'],
+                        items=lambda item: item['item']['values'],
+                    ),
+                    id='lst_grp',
+                    item_id_getter=lambda item: item['id'],
+                    items='cells',
+                ),
+            ),
+            Row(
+                Button(Const('Check'), id='check'),
+                Button(Const('Hint'), id='check'),
+                Button(Const('Clear'), id='check'),
+            ),
+            Row(
+                Button(Const('Reveal'), id='check'),
+                Button(Const('Undo'), id='check'),
+            ),
+            state=GameMenu.GENERATE,
+            getter=getter,
+        ),
+    )
