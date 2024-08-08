@@ -17,6 +17,8 @@ dependencies = [
     "alembic>=1.13.2",
     "dishka>=1.2.0",
     "pendulum>=3.0.0",
+    "mypy>=1.11.1",
+    "black>=24.8.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -27,7 +29,10 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = [
+    "ruff>=0.5.6",
+    "usort>=1.0.8.post1",
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true

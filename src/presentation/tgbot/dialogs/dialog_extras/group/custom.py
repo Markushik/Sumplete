@@ -8,11 +8,11 @@ from aiogram_dialog.widgets.kbd import Group
 
 class CustomGroup(Group):  # a temporary solution
     async def _render_keyboard(
-            self,
-            data: Dict,
-            manager: DialogManager,
+        self,
+        data: Dict,
+        manager: DialogManager,
     ) -> RawKeyboard:
-        self.width = int(manager.dialog_data.get('width'))
+        self.width = int(manager.dialog_data.get("width"))
         self.width = self.width + 1
         kbd: RawKeyboard = []
         for b in self.buttons:

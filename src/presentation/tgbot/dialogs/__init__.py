@@ -6,10 +6,4 @@ from src.presentation.tgbot.dialogs.setup_menu.dialog import setup_menu
 
 
 def get_dialogs() -> list:
-    return [
-        main_menu(),
-        settings_menu(),
-        mode_menu(),
-        setup_menu(),
-        game_menu()
-    ]
+    return [main_menu(), settings_menu(), mode_menu(), setup_menu(), game_menu()]

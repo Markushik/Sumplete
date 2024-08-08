@@ -3,8 +3,8 @@ from adaptix.conversion import get_converter
 from src.domain.dto.user import UserDTO
 from src.infrastructure.database.uow.impl import UnitOfWork
 from src.infrastructure.redis.gateways.user import UserCacheGateway
-from .base import Usecase
 from ...infrastructure.database.models import User
+from .base import Usecase
 
 
 class CreateUser(Usecase[UserDTO, None]):
@@ -22,9 +22,7 @@ class CreateUser(Usecase[UserDTO, None]):
 
 
 class UpdateLanguage(Usecase):
-    def __init__(
-            self, uow: UnitOfWork, cache: UserCacheGateway
-    ):
+    def __init__(self, uow: UnitOfWork, cache: UserCacheGateway):
         self.uow = uow
         self.cache = cache
 

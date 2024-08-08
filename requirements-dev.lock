@@ -31,12 +31,21 @@ asyncpg==0.29.0
 attrs==24.2.0
     # via aiohttp
     # via fluent-runtime
+    # via usort
 babel==2.15.0
     # via fluent-runtime
+black==24.8.0
+    # via sumplete
 cachetools==5.4.0
     # via aiogram-dialog
 certifi==2024.7.4
     # via aiogram
+click==8.1.7
+    # via black
+    # via moreorless
+    # via usort
+colorama==0.4.6
+    # via click
 dishka==1.2.0
     # via sumplete
 dynaconf==3.2.6
@@ -54,6 +63,8 @@ idna==3.7
     # via yarl
 jinja2==3.1.4
     # via aiogram-dialog
+libcst==1.4.0
+    # via usort
 magic-filter==1.0.12
     # via aiogram
     # via aiogram-dialog
@@ -62,13 +73,27 @@ mako==1.3.5
 markupsafe==2.1.5
     # via jinja2
     # via mako
+moreorless==0.4.0
+    # via usort
 multidict==6.0.5
     # via aiohttp
     # via yarl
+mypy==1.11.1
+    # via sumplete
+mypy-extensions==1.0.0
+    # via black
+    # via mypy
 numpy==2.0.1
     # via sumplete
+packaging==24.1
+    # via black
+pathspec==0.12.1
+    # via black
+    # via trailrunner
 pendulum==3.0.0
     # via sumplete
+platformdirs==4.2.2
+    # via black
 pydantic==2.8.2
     # via aiogram
 pydantic-core==2.20.1
@@ -78,26 +103,37 @@ python-dateutil==2.9.0.post0
     # via time-machine
 pytz==2024.1
     # via fluent-runtime
+pyyaml==6.0.2
+    # via libcst
 redis==5.0.8
     # via dynaconf
+ruff==0.5.6
 six==1.16.0
     # via python-dateutil
 sqlalchemy==2.0.32
     # via alembic
     # via sumplete
+stdlibs==2024.5.15
+    # via usort
 structlog==24.4.0
     # via sumplete
 time-machine==2.15.0
     # via pendulum
+toml==0.10.2
+    # via usort
+trailrunner==1.4.0
+    # via usort
 typing-extensions==4.12.2
     # via aiogram
     # via alembic
     # via fluent-runtime
     # via fluent-syntax
+    # via mypy
     # via pydantic
     # via pydantic-core
     # via sqlalchemy
 tzdata==2024.1
     # via pendulum
+usort==1.0.8.post1
 yarl==1.9.4
     # via aiohttp

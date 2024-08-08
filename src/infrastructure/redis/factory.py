@@ -36,9 +36,13 @@ class RedisProvider(Provider):
         return UserCacheGateway(redis=redis)
 
     @provide(scope=Scope.APP)
-    async def create_fsm_pool(self, config: RedisConfig) -> AsyncIterable[ConnectionPoolFSM]:
+    async def create_fsm_pool(
+        self, config: RedisConfig
+    ) -> AsyncIterable[ConnectionPoolFSM]:
         pool = ConnectionPoolFSM(
-            host=config.host, port=config.port, db=config.database_fsm,
+            host=config.host,
+            port=config.port,
+            db=config.database_fsm,
         )
         yield pool
 

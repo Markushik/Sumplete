@@ -2,7 +2,7 @@ from pathlib import Path
 
 from fluent.runtime import FluentLocalization, FluentResourceLoader
 
-from src.domain.constants import LocalesEnum, DEFAULT_LOCALE
+from src.domain.constants import DEFAULT_LOCALE, LocalesEnum
 from src.presentation.tgbot.middlewares import I18nMiddleware
 
 

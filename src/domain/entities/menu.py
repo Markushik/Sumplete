@@ -1,12 +1,12 @@
 from attr import define
 
-SIZES = 'sizes'
-COMPLEXITIES = 'complexities'
-MODES = 'modes'
-LANGUAGES = 'langs'
-STYLES = 'styles'
-TOGGLES = 'toggles'
-ID_LIST_SCROLL = 'list_scroll'
+SIZES = "sizes"
+COMPLEXITIES = "complexities"
+MODES = "modes"
+LANGUAGES = "langs"
+STYLES = "styles"
+TOGGLES = "toggles"
+ID_LIST_SCROLL = "list_scroll"
 
 
 @define(slots=True)

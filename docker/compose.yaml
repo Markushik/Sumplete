@@ -1,0 +1,50 @@
+services:
+  redis:
+    container_name: redis
+    image: redis:7.4.0-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/var/lib/redis/data
+#    network_mode: host
+    restart: on-failure
+  database:
+    container_name: postgresql
+    image: postgres:16.3-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    #    environment:
+    #      POSTGRES_USER = ${DB__USER}
+    #      POSTGRES_PASSWORD = ${DB__PASSWORD}
+    #      POSTGRES_DB = ${DB__NAME}
+    #    env_file: .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+#    network_mode: host
+    restart: on-failure
+  nats:
+    container_name: nats
+    image: nats:2.10.12-alpine
+    command:
+      - '--jetstream'
+      - '--store_dir=/var/lib/nats/data'
+    ports:
+      - 4222:4222
+      - 6222:6222
+      - 8222:8222
+    volumes:
+      - nats-data:/var/lib/nats/data
+#    network_mode: host
+    restart: on-failure
+
+volumes:
+  redis-data:
+  database-data:
+  nats-data:
+
+
+
+# depends_on | [-] restart_policy | env_file | [x] network_mode | [x] ports | [x] restart

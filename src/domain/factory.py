@@ -1,8 +1,9 @@
 from dishka import provide, Provider, Scope
 
+from src.domain.usecases.user import CreateUser, UpdateLanguage
+
 from src.infrastructure.database.uow.impl import UnitOfWork
 from src.infrastructure.redis.gateways.user import UserCacheGateway
-from src.domain.usecases.user import CreateUser, UpdateLanguage
 
 
 class UsecaseProvider(Provider):
@@ -13,5 +14,7 @@ class UsecaseProvider(Provider):
         return CreateUser(uow, cache)
 
     @provide
-    async def update_language(self, uow: UnitOfWork, cache: UserCacheGateway) -> UpdateLanguage:
+    async def update_language(
+        self, uow: UnitOfWork, cache: UserCacheGateway
+    ) -> UpdateLanguage:
         return UpdateLanguage(uow, cache)

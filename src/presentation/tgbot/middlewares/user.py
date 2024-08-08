@@ -11,15 +11,15 @@ from src.infrastructure.redis.gateways.user import UserCacheGateway
 
 class UserMiddleware(BaseMiddleware):
     async def __call__(
-            self,
-            handler: Callable[
-                [Union[Message, CallbackQuery], Dict[str, Any]],
-                Awaitable[Any],
-            ],
-            event: Union[Message, CallbackQuery],
-            data: Dict[str, Any],
+        self,
+        handler: Callable[
+            [Union[Message, CallbackQuery], Dict[str, Any]],
+            Awaitable[Any],
+        ],
+        event: Union[Message, CallbackQuery],
+        data: Dict[str, Any],
     ) -> Any:
-        dishka = data['dishka_container']
+        dishka = data["dishka_container"]
 
         cache = await dishka.get(UserCacheGateway)
         create_user = await dishka.get(CreateUser)
@@ -35,7 +35,7 @@ class UserMiddleware(BaseMiddleware):
                     username=event.from_user.username,
                     language=DEFAULT_LOCALE,
                     notify=False,
-                    style='emoji',
+                    style="emoji",
                 )
             )
 

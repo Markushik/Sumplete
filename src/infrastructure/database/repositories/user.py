@@ -1,9 +1,10 @@
 from sqlalchemy import update
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.domain.dto.user import UserDTO
+
 from src.infrastructure.database.interfaces.user import IUserRepo
 from src.infrastructure.database.models import User
-from src.domain.dto.user import UserDTO
 
 
 class UserRepo(IUserRepo):
@@ -16,9 +17,7 @@ class UserRepo(IUserRepo):
 
     async def update_lang(self, user: UserDTO) -> None:
         stmt = (
-            update(User)
-            .where(User.tg_id == user.tg_id)
-            .values(language=user.language)
+            update(User).where(User.tg_id == user.tg_id).values(language=user.language)
         )
         await self.session.execute(stmt)
         await self.session.flush()
@@ -34,9 +33,7 @@ class UserRepo(IUserRepo):
 
     async def update_style(self, tg_id: int, style: str) -> None:
         stmt = (
-            update(User)
-            .where(User.tg_id == tg_id)  # type: ignore
-            .values(style=style)
+            update(User).where(User.tg_id == tg_id).values(style=style)  # type: ignore
         )
         await self.session.execute(stmt)
         await self.session.flush()

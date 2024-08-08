@@ -1,6 +1,6 @@
 from typing import List
 
-from attr import field, define
+from attr import define, field
 
 from src.domain.entities.game import Cell
 

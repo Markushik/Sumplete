@@ -15,16 +15,16 @@ async def _main() -> None:
     bot = await dishka.get(Bot)
     disp = await dishka.get(Dispatcher)
 
-    await logger.ainfo('Bot starting. . .')
+    await logger.ainfo("Bot starting. . .")
 
     try:
         await disp.start_polling(bot)
     finally:
-        await logger.ainfo('Bot stopping. . .')
+        await logger.ainfo("Bot stopping. . .")
         await dishka.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         asyncio.run(_main())
     except (KeyboardInterrupt, SystemExit):

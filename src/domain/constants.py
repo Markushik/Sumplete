@@ -7,5 +7,5 @@ DEFAULT_LOCALE: Final[str] = "en_GB"
 
 
 class LocalesEnum(StrEnum):
-    ENGLISH = 'en_GB'
-    RUSSIAN = 'ru_RU'
+    ENGLISH = "en_GB"
+    RUSSIAN = "ru_RU"

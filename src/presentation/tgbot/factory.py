@@ -21,10 +21,10 @@ class DispProvider(Provider):
 
     @provide
     def create_dispatcher(
-            self,
-            container: AsyncContainer,
-            storage: BaseStorage,
-            event_isolation: BaseEventIsolation,
+        self,
+        container: AsyncContainer,
+        storage: BaseStorage,
+        event_isolation: BaseEventIsolation,
     ) -> Dispatcher:
         disp = Dispatcher(
             storage=storage,
@@ -48,19 +48,17 @@ class DispProvider(Provider):
 
     @provide
     def get_event_isolation(self, redis: RedisFSM) -> BaseEventIsolation:
-        return RedisEventIsolation(redis)
+        return RedisEventIsolation(redis=redis)
 
 
 class BotProvider(Provider):
     @provide(scope=Scope.APP)
     async def get_bot(self, config: TokenConfig) -> AsyncIterable[Bot]:
         async with Bot(
-                token=config.token,
-                default=DefaultBotProperties(
-                    parse_mode=ParseMode.HTML,
-                ),
+            token=config.token,
+            default=DefaultBotProperties(
+                parse_mode=ParseMode.HTML,
+            ),
         ) as bot:
-            await bot.delete_webhook(
-                drop_pending_updates=True
-            )
+            await bot.delete_webhook(drop_pending_updates=True)
             yield bot

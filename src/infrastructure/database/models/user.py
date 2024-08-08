@@ -11,7 +11,7 @@ class User(Base):
     first_name: Mapped[str] = mapped_column(String(32))
     last_name: Mapped[str] = mapped_column(String(64), default=None)
     username: Mapped[str] = mapped_column(String(32))
-    language: Mapped[str] = mapped_column(String(5), default='en_GB')
+    language: Mapped[str] = mapped_column(String(5), default="en_GB")
     notify: Mapped[bool] = mapped_column(Boolean, default=False)
     style: Mapped[str] = mapped_column(String(10))
 

@@ -35,8 +35,12 @@ database = my_config.database
 
 def get_url() -> URL:
     return URL.create(
-        drivername=database.driver, username=database.username, password=database.password,
-        host=database.host, port=database.port, database=database.database
+        drivername=database.driver,
+        username=database.username,
+        password=database.password,
+        host=database.host,
+        port=database.port,
+        database=database.database,
     )
 
 
