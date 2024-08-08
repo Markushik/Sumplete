@@ -20,7 +20,5 @@ class I18nFormat(Text):
         self.text = text
 
     async def _render_text(self, data: Dict, manager: DialogManager) -> str:
-        format_text = manager.middleware_data.get(
-            "aiogd_i18n_format", default_format_text
-        )
+        format_text = manager.middleware_data.get("aiogd_i18n_format", default_format_text)
         return format_text(self.text, data)

@@ -7,6 +7,7 @@ from src.domain.constants import DEFAULT_LOCALE
 from src.domain.dto.user import UserDTO
 from src.domain.usecases.user import CreateUser
 from src.infrastructure.redis.gateways.user import UserCacheGateway
+from adaptix import Retort
 
 
 class UserMiddleware(BaseMiddleware):

@@ -1,29 +1,29 @@
 from aiogram_dialog import DialogManager
 
 from src.domain.entities.menu import (
-    Customization,
-    LANGUAGES,
-    Localization,
-    Notification,
+    Style,
+    Language,
+    Announcement,
     STYLES,
-    TOGGLES,
+    LANGUAGES,
+    ANNOUNCEMENTS,
 )
 
 
-async def getter(dialog_manager: DialogManager, **kwargs):  # noqa
+async def getter(dialog_manager: DialogManager, **kwargs):
     l10n = dialog_manager.middleware_data.get("l10n")
 
     return {
         LANGUAGES: [
-            Localization("en_GB_id", "🇬🇧 English", "en_GB"),
-            Localization("ru_RU_id", "🇷🇺 Русский", "ru_RU"),
+            Language("en_GB", "🇬🇧 English"),
+            Language("ru_RU", "🇷🇺 Русский"),
         ],
         STYLES: [
-            Customization("format_id", l10n.format_value("format-btn")),
-            Customization("emoji_id", l10n.format_value("emoji-btn")),
+            Style("format", l10n.format_value("format-btn")),
+            Style("emoji", l10n.format_value("emoji-btn")),
         ],
-        TOGGLES: [
-            Notification("on_id", l10n.format_value("on-btn")),
-            Notification("off_id", l10n.format_value("off-btn")),
+        ANNOUNCEMENTS: [
+            Announcement("on", l10n.format_value("on-btn")),
+            Announcement("off", l10n.format_value("off-btn")),
         ],
     }

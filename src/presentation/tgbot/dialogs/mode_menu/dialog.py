@@ -11,7 +11,7 @@ from aiogram_dialog.widgets.kbd import (
 )
 from aiogram_dialog.widgets.text import Format, List
 
-from src.domain.entities.menu import ID_LIST_SCROLL, MODES
+from src.domain.entities.menu import MODES
 from src.presentation.tgbot.dialogs.dialog_extras.i18n.format import I18nFormat
 from src.presentation.tgbot.dialogs.mode_menu.getters import getter
 from src.presentation.tgbot.dialogs.mode_menu.handlers import (
@@ -27,13 +27,13 @@ def mode_menu() -> Dialog:
             List(
                 Format("{item.message}"),
                 items=MODES,
-                id=ID_LIST_SCROLL,
+                id="list_scroll",
                 page_size=1,
             ),
             ScrollingGroup(
                 Select(
                     Format("{item.mode}"),
-                    id="ms",
+                    id="select_mode",
                     items=MODES,
                     item_id_getter=lambda item: item.id,
                     on_click=on_click_select_mode,
@@ -42,13 +42,13 @@ def mode_menu() -> Dialog:
                 height=1,
                 hide_pager=True,
                 id="scroll_no_pager",
-                on_page_changed=sync_scroll(ID_LIST_SCROLL),
+                on_page_changed=sync_scroll("list_scroll"),
             ),
             Row(
                 PrevPage(scroll="scroll_no_pager", text=Format("←")),
                 CurrentPage(
                     scroll="scroll_no_pager",
-                    text=Format("{current_page1} / {data[len]}"),
+                    text=Format("{current_page1} / 4"),
                 ),
                 NextPage(scroll="scroll_no_pager", text=Format("→")),
             ),

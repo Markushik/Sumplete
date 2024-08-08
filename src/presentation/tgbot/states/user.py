@@ -10,7 +10,7 @@ class SettingsMenu(StatesGroup):
     STYLE = State()
     LANGUAGE = State()
     NOTIFY = State()
-    PERSONAL = State()
+    PROFILE = State()
 
 
 class ModeMenu(StatesGroup):

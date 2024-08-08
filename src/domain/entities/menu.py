@@ -1,35 +1,33 @@
-from attr import define
+from attrs import define
 
 SIZES = "sizes"
 COMPLEXITIES = "complexities"
 MODES = "modes"
 LANGUAGES = "langs"
 STYLES = "styles"
-TOGGLES = "toggles"
-ID_LIST_SCROLL = "list_scroll"
+ANNOUNCEMENTS = "toggles"
 
 
 @define(slots=True)
-class Localization:
+class Language:
     id: str
     language: str
-    locale: str
 
 
 @define(slots=True)
-class Customization:
+class Style:
     id: str
     style: str
 
 
 @define(slots=True)
-class Notification:
+class Announcement:
     id: str
-    toggle: str
+    switch: str
 
 
 @define(slots=True)
-class Dimension:
+class Size:
     id: str
     size: str
 

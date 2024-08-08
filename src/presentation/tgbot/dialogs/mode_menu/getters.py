@@ -9,25 +9,25 @@ async def getter(dialog_manager: DialogManager, **kwargs):
     return {
         MODES: [
             Mode(
-                "generate_id",
+                "generate",
                 l10n.format_value("generate-btn"),
                 l10n.format_value("generate-msg"),
             ),
             Mode(
-                "random_id",
+                "random",
                 l10n.format_value("random-btn"),
                 l10n.format_value("random-msg"),
             ),
             Mode(
-                "daily_id",
+                "daily",
                 l10n.format_value("daily-btn"),
                 l10n.format_value("daily-msg"),
             ),
             Mode(
-                "search_id",
+                "search",
                 l10n.format_value("search-btn"),
                 l10n.format_value("search-msg"),
             ),
-        ],
-        "len": 4,
+        ]
+
     }

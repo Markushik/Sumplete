@@ -1,8 +1,8 @@
 from aiogram_dialog import Dialog, Window
-from aiogram_dialog.widgets.kbd import Button, Group, Radio, Row, SwitchTo, Toggle
+from aiogram_dialog.widgets.kbd import Button, Radio, Row, SwitchTo, Toggle, Select
 from aiogram_dialog.widgets.text import Format
 
-from src.domain.entities.menu import LANGUAGES, STYLES, TOGGLES
+from src.domain.entities.menu import LANGUAGES, STYLES, ANNOUNCEMENTS
 from src.presentation.tgbot.dialogs.dialog_extras.i18n.format import I18nFormat
 from src.presentation.tgbot.dialogs.settings_menu.getters import getter
 from src.presentation.tgbot.dialogs.settings_menu.handlers import (
@@ -18,22 +18,20 @@ def settings_menu() -> Dialog:
     return Dialog(
         Window(
             I18nFormat("settings-message"),
-            SwitchTo(
-                I18nFormat("notify-btn"), id="notify_id", state=SettingsMenu.NOTIFY
-            ),
+            SwitchTo(I18nFormat("notify-btn"), id="notify", state=SettingsMenu.NOTIFY),
             Row(
                 SwitchTo(
                     I18nFormat("language-btn"),
-                    id="language_id",
+                    id="language",
                     state=SettingsMenu.LANGUAGE,
                 ),
                 SwitchTo(
                     I18nFormat("profile-btn"),
-                    id="language_id",
-                    state=SettingsMenu.PERSONAL,
+                    id="profile",
+                    state=SettingsMenu.PROFILE,
                 ),
             ),
-            SwitchTo(I18nFormat("style-btn"), id="style_id", state=SettingsMenu.STYLE),
+            SwitchTo(I18nFormat("style-btn"), id="style", state=SettingsMenu.STYLE),
             Button(
                 I18nFormat("back-to-main-btn"),
                 id="back_to_main",
@@ -43,17 +41,14 @@ def settings_menu() -> Dialog:
         ),
         Window(
             I18nFormat("language-message"),
-            Row(
-                Radio(
-                    Format("✓ {item.language}"),
-                    Format("{item.language}"),
-                    id="get_languages_id",
-                    item_id_getter=lambda item: item.id,
-                    items=LANGUAGES,
-                    on_click=on_click_update_language,  # noqa
-                )
+            Select(
+                Format("{item.language}"),
+                id="select_language",
+                item_id_getter=lambda item: item.id,
+                items=LANGUAGES,
+                on_click=on_click_update_language,
             ),
-            SwitchTo(I18nFormat("back-btn"), id="back_id", state=SettingsMenu.SETTINGS),
+            SwitchTo(I18nFormat("back-btn"), id="back", state=SettingsMenu.SETTINGS),
             state=SettingsMenu.LANGUAGE,
         ),
         Window(
@@ -62,27 +57,33 @@ def settings_menu() -> Dialog:
                 Radio(
                     Format("✓ {item.style}"),
                     Format("{item.style}"),
-                    id="get_styles_id",
+                    id="radio_style",
                     item_id_getter=lambda item: item.id,
                     items=STYLES,
-                    on_click=on_click_update_style,  # noqa
+                    on_click=on_click_update_style,
                 )
             ),
-            Button(I18nFormat("check-btn"), id="check_id"),  # SwitchTo
-            SwitchTo(I18nFormat("back-btn"), id="back_id", state=SettingsMenu.SETTINGS),
+            Button(I18nFormat("check-btn"), id="check"),  # SwitchTo
+            SwitchTo(I18nFormat("back-btn"), id="back", state=SettingsMenu.SETTINGS),
             state=SettingsMenu.STYLE,
         ),
         Window(
             I18nFormat("notify-msg"),
             Toggle(
-                text=Format("{item.toggle}"),
-                id="get_toggles_id",
-                items=TOGGLES,
+                text=Format("{item.switch}"),
+                id="radio_toggle",
+                items=ANNOUNCEMENTS,
                 item_id_getter=lambda item: item.id,
-                on_click=on_click_update_notify,  # noqa
+                on_click=on_click_update_notify,
             ),
-            SwitchTo(I18nFormat("back-btn"), id="back_id", state=SettingsMenu.SETTINGS),
+            SwitchTo(I18nFormat("back-btn"), id="back", state=SettingsMenu.SETTINGS),
             state=SettingsMenu.NOTIFY,
+        ),
+        Window(
+            I18nFormat("profile-msg"),
+            Button(I18nFormat("delete-profile-btn"), id="delete_profile"),
+            SwitchTo(I18nFormat("back-btn"), id="back", state=SettingsMenu.SETTINGS),
+            state=SettingsMenu.PROFILE,
         ),
         getter=getter,
     )

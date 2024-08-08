@@ -1,7 +1,6 @@
 from itertools import cycle
 
 from adaptix import Retort
-from attr import AttrsInstance
 from numpy.random import choice, randint
 
 from src.core.puzzle.constants import Complexity
@@ -31,61 +30,60 @@ class PuzzleGenerate:
 
         cells: list = []
         count: int = 0
-        value: dict = {}
-        _id = 0
+        id = 0
 
         for i in r_array:
             if count % data.size == 0 and count != 0:
-                _id += 1
+                id += 1
                 cells.append(
                     Cell(
-                        str(_id),
+                        str(id),
                         [
-                            Value(str(_id + 200), str(next(h_sum))),
-                            Value(str(_id + 400), "test1"),
+                            Value(str(id + 200), str(next(h_sum))),
+                            Value(str(id + 400), "test1"),
                         ],
                     )
                 )
             if count % data.size != 0:
-                _id += 1
+                id += 1
                 cells.append(
                     Cell(
-                        str(_id),
-                        [Value(str(_id + 200), str(i)), Value(str(_id + 400), "test2")],
+                        str(id),
+                        [Value(str(id + 200), str(i)), Value(str(id + 400), "test2")],
                     )
                 )
             else:
-                _id += 1
+                id += 1
                 cells.append(
                     Cell(
-                        str(_id),
-                        [Value(str(_id + 200), str(i)), Value(str(_id + 400), "test3")],
+                        str(id),
+                        [Value(str(id + 200), str(i)), Value(str(id + 400), "test3")],
                     )
                 )
             count += 1
             if count == len(r_array):
-                _id += 1
+                id += 1
                 cells.append(
                     Cell(
-                        str(_id),
+                        str(id),
                         [
-                            Value(str(_id + 200), str(next(h_sum))),
-                            Value(str(_id + 400), "test4"),
+                            Value(str(id + 200), str(next(h_sum))),
+                            Value(str(id + 400), "test4"),
                         ],
                     )
                 )
         for i in v_sum:
-            _id += 1
+            id += 1
             cells.append(
                 Cell(
-                    str(_id),
-                    [Value(str(_id + 200), str(i)), Value(str(_id + 400), "test5")],
+                    str(id),
+                    [Value(str(id + 200), str(i)), Value(str(id + 400), "test5")],
                 )
             )
 
-        _id += 1
+        id += 1
         cells.append(
-            Cell(str(_id), [Value(str(_id + 200), "ㅤ"), Value(str(_id + 400), "ㅤ")])
+            Cell(str(id), [Value(str(id + 200), "ㅤ"), Value(str(id + 400), "ㅤ")])
         )
 
         return GameField(id="game_id", cells=cells)

@@ -1,15 +1,15 @@
 from typing import List
 
-from attr import define
+from attr import dataclass
 
 
-@define(slots=True)
+@dataclass(slots=True)
 class Value:
     id: str
     value: str
 
 
-@define(slots=True)
+@dataclass(slots=True)
 class Cell:
     id: str
     values: List[Value]

@@ -13,6 +13,7 @@ async def getter(dialog_manager: DialogManager, **kwargs):
     if dialog_manager.dialog_data.get("play"):
         generate = retort.load(dialog_manager.dialog_data["generate"], GameField)
         cells = asdict(generate)["cells"]
+
         return {
             "width": dialog_manager.dialog_data["width"],
             "cells": cells,

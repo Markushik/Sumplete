@@ -6,8 +6,9 @@ services:
       - 6379:6379
     volumes:
       - redis-data:/var/lib/redis/data
-#    network_mode: host
+    #    network_mode: host
     restart: on-failure
+
   database:
     container_name: postgresql
     image: postgres:16.3-alpine
@@ -23,8 +24,18 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-#    network_mode: host
+    #    network_mode: host
     restart: on-failure
+
+  pg-admin:
+    container_name: pg-admin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: zem_mark@yahoo.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    ports:
+      - 80:80
+
   nats:
     container_name: nats
     image: nats:2.10.12-alpine
@@ -37,7 +48,7 @@ services:
       - 8222:8222
     volumes:
       - nats-data:/var/lib/nats/data
-#    network_mode: host
+    #    network_mode: host
     restart: on-failure
 
 volumes:

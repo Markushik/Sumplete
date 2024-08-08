@@ -9,6 +9,7 @@ check-btn = 👀 View
 language-btn = 🌏 Language
 notify-btn = 🔔 Announcement
 profile-btn = 👤 Profile
+delete-profile-btn = 🗑️ Delete
 
 support-btn = 🆘 Support
 back-btn = ⬅️ Back
@@ -40,32 +41,32 @@ start-message =
     🌟 Have a good game!
 
 settings-message =
-    ⚙️ <b>Available Settings:</b>
+    ℹ️ <b>Configure</b> the bot according to <b>your preferences</b>
 
-    🔔 <b>Announcement</b> – tune daily announcement
-    💅 <b>Customization</b> – customise display style
-
-    🌏 <b>Language</b> – language selection
-    👤 <b>Profile</b> – look at your profile
+    ⚙️ <b>Available settings</b>:
 
 language-message =
-    🌏 <b>Choose</b> the language the bot will <b>talk in</b>:
+    ℹ️ <b>Select</b> the language in which the bot <b>will communicate</b>
+
+    🌏 <b>Preferred languages</b>:
 
 style-message =
     ℹ️ <b>With</b> this setting you can <b>customize</b> and <b>view</b> puzzle <b>number style</b>
 
-    🎨 <b>Choose</b> style for <b>puzzle</b>:
+    💅 <b>Choose</b> style for <b>puzzle</b>:
 
 notify-msg =
     ℹ️ <b>Everyday</b> bot will send <b>Daily Puzzle</b> for completing you get <b>additional points</b>
 
-    🔔 <b>Turn</b> on/off the notifications with the <b>switch</b>:
+    🔔 <b>Turn</b> on/off the announcement with the <b>switch</b>:
 
-on-msg = You switched-on send Daily Puzzle
-off-msg = You switched-off send Daily Puzzle
+profile-msg = ...
 
-format-msg = You changed style on Format
-emoji-msg = You changed style on Emoji
+on-msg = ✅ Approve: Switched-on sending Daily Puzzle
+off-msg = ✅ Approve: Switched-off sending Daily Puzzle
+
+format-msg = ✅ Approve: Style has been changed on Format
+emoji-msg = ✅ Approve: Style has been changed on Emoji
 
 choose-msg =
     ℹ️ <b>When</b> selects size and difficult puzzle game starting when <b>confirm setups</b>
