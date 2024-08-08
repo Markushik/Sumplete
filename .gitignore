@@ -5,7 +5,6 @@ build/
 dist/
 wheels/
 *.egg-info
-
-# venv
 .venv
 .idea
+settings/.secrets.toml
