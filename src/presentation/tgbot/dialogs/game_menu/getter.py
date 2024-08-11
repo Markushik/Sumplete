@@ -19,11 +19,24 @@ async def getter(dialog_manager: DialogManager, **kwargs):
         play = dialog_manager.dialog_data["play"]
 
         finder = dialog_manager.find("lst_grp")
+        local_solved: list = []
+        local_unsolved: list = []
 
         print(cells)
         print(solved)
         print(unsolved)
 
+        for cell in cells:
+            for unsolve in unsolved:
+                if finder.find_for_item("toggle_play", cell["id"]).is_checked(unsolve):
+                    local_unsolved.append(unsolve)
+            for solve in solved:
+                if finder.find_for_item("toggle_play", cell["id"]).is_checked(solve):
+                    local_solved.append(solve)
+
+        if not list(set(local_unsolved) & set(unsolved)):
+            if sorted(local_solved) == sorted(solved):
+                play = False
 
         return {
             "play": play,
@@ -39,16 +52,13 @@ async def getter(dialog_manager: DialogManager, **kwargs):
     puzzle = PuzzleGenerate()
     generate = puzzle(setup)
 
-    # setup = PuzzleSetup(4, "ADVANCED")  # maybe add style (emoji, format)
-    # puzzle = PuzzleGenerate()
-
     fields = pack_to_field(
         style="EMOJI",
         size=generate.size,
         zeroed_array=generate.zeroed_array,
         modified_array=generate.modified_array,
         horizontal_sums=generate.horizontal_sums,
-        vertical_sums=cycle(generate.vertical_sums),
+        vertical_sums=iter(generate.vertical_sums),
     )
 
     play: bool = True
