@@ -33,16 +33,10 @@ attrs==24.2.0
     # via fluent-runtime
 babel==2.15.0
     # via fluent-runtime
-black==24.8.0
-    # via sumplete
 cachetools==5.4.0
     # via aiogram-dialog
 certifi==2024.7.4
     # via aiogram
-click==8.1.7
-    # via black
-colorama==0.4.6
-    # via click
 dishka==1.2.0
     # via sumplete
 dynaconf==3.2.6
@@ -74,20 +68,13 @@ multidict==6.0.5
 mypy==1.11.1
     # via sumplete
 mypy-extensions==1.0.0
-    # via black
     # via mypy
 numpy==2.0.1
     # via sumplete
 orjson==3.10.7
     # via sumplete
-packaging==24.1
-    # via black
-pathspec==0.12.1
-    # via black
 pendulum==3.0.0
     # via sumplete
-platformdirs==4.2.2
-    # via black
 pydantic==2.8.2
     # via aiogram
 pydantic-core==2.20.1

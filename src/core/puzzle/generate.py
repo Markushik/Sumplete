@@ -1,7 +1,5 @@
 import random
 from enum import Enum
-from itertools import cycle
-from pprint import pprint
 from string import ascii_letters, digits
 
 import numpy
@@ -118,21 +116,8 @@ def pack_to_field(
     cells.append(pack_sum_to_cell(vertical_sums))
 
     for item in horizontal_sums:
-        cells.append(
-            Cell(
-                id=get_id_cell(),
-                values=[Value(id=get_id_value(), value=str(item))],
-            )
-        )
-
-    cells.append(
-        Cell(
-            get_id_cell(),
-            [
-                Value(id=get_id_value(), value="ㅤ"),
-            ],
-        )
-    )
+        cells.append(Cell(get_id_cell(), [Value(id=get_id_value(), value=str(item))]))
+    cells.append(Cell(get_id_cell(), [Value(get_id_value(), "ㅤ")]))
 
     return GameField(id="game", cells=cells, solved=solved, unsolved=unsolved)
 
