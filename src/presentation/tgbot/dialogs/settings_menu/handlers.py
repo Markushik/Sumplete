@@ -56,7 +56,7 @@ async def on_click_update_notify(
         flag = False
         await query.answer(l10n.format_value("off-msg"))
 
-    await uow.user_repo.update_notify(
+    await uow.user.update_notify(
         tg_id=dialog_manager.event.from_user.id, notify=flag
     )
     await uow.commit()
@@ -77,7 +77,7 @@ async def on_click_update_style(
     if item_id == "emoji":
         await query.answer(l10n.format_value("emoji-msg"))
 
-    await uow.user_repo.update_style(
+    await uow.user.update_style(
         tg_id=dialog_manager.event.from_user.id, style=item_id
     )
     await uow.commit()

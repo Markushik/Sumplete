@@ -60,6 +60,9 @@ notify-msg =
 
     🔔 <b>Turn</b> on/off the announcement with the <b>switch</b>:
 
+input-error-msg = 🚫 Error: Input a lot of count symbols
+parameters-error-msg = 🚫 Error: Not all parameters are selected
+
 profile-msg = ...
 
 on-msg = ✅ Approve: Switched-on sending Daily Puzzle

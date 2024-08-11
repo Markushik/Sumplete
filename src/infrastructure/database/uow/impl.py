@@ -1,5 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from ..repositories.puzzle import PuzzleRepo
 from ..repositories.user import UserRepo
 
 from .interface import IUoW
@@ -10,7 +11,8 @@ class UnitOfWork(IUoW):
         self.session = session
 
     async def __aenter__(self):
-        self.user_repo = UserRepo(self.session)
+        self.user = UserRepo(self.session)
+        self.puzzle = PuzzleRepo(self.session)
         return await super().__aenter__()
 
     async def __aexit__(self, *args):

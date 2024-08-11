@@ -1,18 +1,33 @@
 from typing import List
 
-from attr import field, dataclass
+from attrs import field, define
 
 from src.domain.entities.game import Cell
 
 
-@dataclass(slots=True)
+@define(slots=True, kw_only=True)
+class PuzzleDTO:
+    puzzle_id: int = field(default=None)
+    size: int
+    score: int
+    complexity: str
+    index_sample: list[int]
+    original_array: list[int]
+    zeroed_array: list[int]
+    modified_array: list[int]
+    vertical_sums: list[int]
+    horizontal_sums: list[int]
+
+
+@define(slots=True)  # todo: to entity
 class PuzzleSetup:
-    use: bool = field(default=False)
-    size: int | None = field(default=None)
-    complexity: str | None = field(default=None)
+    size: int
+    complexity: str
 
 
-@dataclass(slots=True)
+@define(slots=True)
 class GameField:
     id: str
     cells: List[Cell]
+    solved: list
+    unsolved: list

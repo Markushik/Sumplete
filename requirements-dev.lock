@@ -85,6 +85,8 @@ mypy-extensions==1.0.0
     # via mypy
 numpy==2.0.1
     # via sumplete
+orjson==3.10.7
+    # via sumplete
 packaging==24.1
     # via black
 pathspec==0.12.1

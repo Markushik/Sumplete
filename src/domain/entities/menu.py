@@ -3,9 +3,9 @@ from attrs import define
 SIZES = "sizes"
 COMPLEXITIES = "complexities"
 MODES = "modes"
-LANGUAGES = "langs"
+LANGUAGES = "languages"
 STYLES = "styles"
-ANNOUNCEMENTS = "toggles"
+ANNOUNCEMENTS = "announcements"
 
 
 @define(slots=True)

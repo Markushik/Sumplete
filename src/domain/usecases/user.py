@@ -15,10 +15,9 @@ class CreateUser(Usecase[UserDTO, None]):
     async def __call__(self, data: UserDTO) -> None:
         converter = get_converter(UserDTO, User)
         user = converter(data)
-        print(user)
 
         await self.cache.create(data)
-        await self.uow.user_repo.create(user)
+        await self.uow.user.create(user)
         await self.uow.commit()
 
 
@@ -29,5 +28,5 @@ class UpdateLanguage(Usecase[UserDTO, None]):
 
     async def __call__(self, data: UserDTO) -> None:
         await self.cache.update_lang(data)
-        await self.uow.user_repo.update_lang(data)
+        await self.uow.user.update_lang(data)
         await self.uow.commit()
