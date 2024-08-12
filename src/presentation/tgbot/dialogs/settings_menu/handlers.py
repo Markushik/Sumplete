@@ -25,7 +25,6 @@ async def on_click_update_language(
     item_id: str,
     update_language: FromDishka[UpdateLanguage],
 ) -> None:
-
     if item_id == "ru_RU":
         await update_format_key(dialog_manager, item_id)
         await query.answer("✅ Approve: Язык изменен на 🇷🇺 Русский")
@@ -56,9 +55,7 @@ async def on_click_update_notify(
         flag = False
         await query.answer(l10n.format_value("off-msg"))
 
-    await uow.user.update_notify(
-        tg_id=dialog_manager.event.from_user.id, notify=flag
-    )
+    await uow.user.update_notify(tg_id=dialog_manager.event.from_user.id, notify=flag)
     await uow.commit()
 
 
@@ -77,7 +74,5 @@ async def on_click_update_style(
     if item_id == "emoji":
         await query.answer(l10n.format_value("emoji-msg"))
 
-    await uow.user.update_style(
-        tg_id=dialog_manager.event.from_user.id, style=item_id
-    )
+    await uow.user.update_style(tg_id=dialog_manager.event.from_user.id, style=item_id)
     await uow.commit()

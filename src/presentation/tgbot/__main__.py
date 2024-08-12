@@ -1,6 +1,5 @@
-import asyncio
-
 import structlog
+import winloop
 from aiogram import Bot, Dispatcher
 
 from src.main.di.setup import setup_dishka
@@ -26,6 +25,6 @@ async def _main() -> None:
 
 if __name__ == "__main__":
     try:
-        asyncio.run(_main())
+        winloop.run(_main())
     except (KeyboardInterrupt, SystemExit):
         ...

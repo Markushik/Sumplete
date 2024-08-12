@@ -1,4 +1,4 @@
-from enum import StrEnum, Enum, IntEnum
+from enum import Enum, IntEnum, StrEnum
 from typing import Final
 
 TELEGRAPH_LINK: Final[str] = "https://telegra.ph/Sumplete---Rules-07-17"
@@ -31,4 +31,16 @@ class Complexity(Enum):
     ADVANCED = Advanced
     EXPERT = Expert
 
+class Emoji(Enum):
+    DELETED = "❌"
+    KEEP = "✅"
 
+
+class Format(Enum):
+    DELETED = ""
+    KEEP = ""
+
+
+class Marker(Enum):
+    EMOJI = Emoji
+    FORMAT = Format

@@ -19,6 +19,9 @@ dependencies = [
     "pendulum>=3.0.0",
     "mypy>=1.11.1",
     "orjson>=3.10.7",
+    "winloop>=0.1.6",
+    "psycopg[binary,pool]>=3.2.1",
+    "ruff-lsp>=0.0.54",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

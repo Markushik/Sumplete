@@ -10,7 +10,7 @@ port = 5432
 username = 'postgres'
 password = 'postgres'
 database = 'postgres'
-driver = 'postgresql+asyncpg'
+driver = 'postgresql+psycopg'
 
 [development.redis]
 host = 'localhost'

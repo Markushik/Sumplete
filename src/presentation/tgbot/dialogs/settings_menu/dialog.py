@@ -1,8 +1,8 @@
 from aiogram_dialog import Dialog, Window
-from aiogram_dialog.widgets.kbd import Button, Radio, Row, SwitchTo, Toggle, Select
+from aiogram_dialog.widgets.kbd import Button, Radio, Row, Select, SwitchTo, Toggle
 from aiogram_dialog.widgets.text import Format
 
-from src.domain.entities.menu import LANGUAGES, STYLES, ANNOUNCEMENTS
+from src.domain.entities.menu import ANNOUNCEMENTS, LANGUAGES, STYLES
 from src.presentation.tgbot.dialogs.dialog_extras.i18n.format import I18nFormat
 from src.presentation.tgbot.dialogs.settings_menu.getters import getter
 from src.presentation.tgbot.dialogs.settings_menu.handlers import (

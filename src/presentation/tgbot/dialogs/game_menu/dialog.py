@@ -1,5 +1,5 @@
 from aiogram_dialog import Dialog, Window
-from aiogram_dialog.widgets.kbd import Button, ListGroup, Row, Toggle, Group
+from aiogram_dialog.widgets.kbd import Button, Group, ListGroup, Row, Toggle
 from aiogram_dialog.widgets.text import Const, Format
 from magic_filter import F
 
@@ -12,7 +12,7 @@ from src.presentation.tgbot.states.user import GameMenu
 def game_menu() -> Dialog:
     return Dialog(
         Window(
-            Format("U Win", when=~F["play"]),
+            I18nFormat("puzzle-solved", when=~F["play"]),
             I18nFormat("play-msg", when=F["play"]),
             CustomGroup(
                 ListGroup(
@@ -40,7 +40,7 @@ def game_menu() -> Dialog:
                 ),
                 when=F["play"],
             ),
-            state=GameMenu.GENERATE,
+            state=GameMenu.PLAY,
             getter=getter,
         ),
     )

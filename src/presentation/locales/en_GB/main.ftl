@@ -71,20 +71,23 @@ off-msg = ✅ Approve: Switched-off sending Daily Puzzle
 format-msg = ✅ Approve: Style has been changed on Format
 emoji-msg = ✅ Approve: Style has been changed on Emoji
 
+puzzle-solved = 🎉 <b>The puzzle has been solved, you are excellent!</b>
+
 choose-msg =
     ℹ️ <b>When</b> selects size and difficult puzzle game starting when <b>confirm setups</b>
 
     👇 <b>Choose</b> the field <b>size</b> and <b>difficult</b>:
 
 play-msg =
-    <b>Puzzle №</b> <u>1324</u>
+    <b>Puzzle №</b> <u>{ $puzzle_id }</u>
 
     📐 <b>Size:</b> <code>{ $size }×{ $size }</code>
     🧠 <b>Complexity:</b> <code>{ $complexity }</code>
-    ⭐ <b>Points:</b> <code>35</code> p.
-
-    🕗 <b>Started at:</b> <code>{ $time }</code>
+    ⭐ <b>Points:</b> <code>{ $score }</code> p.
     🖱️ <b>Clicks:</b> <code>{ $clicks }</code> c.
+
+    🕓 <b>Started at:</b> <code>{ $started_at }</code>
+    🕜 <b>Ended at: </b> <code>{ $ended_at }</code>
 
 
 generate-msg =

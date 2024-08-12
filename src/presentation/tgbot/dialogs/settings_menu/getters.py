@@ -1,12 +1,12 @@
 from aiogram_dialog import DialogManager
 
 from src.domain.entities.menu import (
-    Style,
-    Language,
     Announcement,
-    STYLES,
-    LANGUAGES,
     ANNOUNCEMENTS,
+    Language,
+    LANGUAGES,
+    Style,
+    STYLES,
 )
 
 

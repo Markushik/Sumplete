@@ -34,7 +34,4 @@ class RankingMenu(StatesGroup):
 
 
 class GameMenu(StatesGroup):
-    GENERATE = State()
-    RANDOM = State()
-    DAILY = State()
-    SEARCH = State()
+    PLAY = State()

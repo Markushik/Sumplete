@@ -7,14 +7,15 @@ from aiogram_dialog.widgets.text import Const, Format
 from src.domain.entities.menu import COMPLEXITIES, SIZES
 from src.presentation.tgbot.dialogs.dialog_extras.i18n.format import I18nFormat
 from src.presentation.tgbot.states.user import ModeMenu, SetupMenu
+
 from .getters import get_pincode_data, get_setups
 from .handers import (
     on_backspace,
-    on_click_play_generate,
-    on_click_to_mode_menu,
+    on_generate,
+    on_click_mode_menu,
     on_confirm,
     on_input,
-    on_select,
+    on_select, on_random,
 )
 
 
@@ -43,12 +44,12 @@ def setup_menu() -> Dialog:
             Button(
                 I18nFormat("confirm-btn"),
                 id="apply",
-                on_click=on_click_play_generate,
+                on_click=on_generate,
             ),
             Button(
                 I18nFormat("back-btn"),
                 id="back_to_mode_menu",
-                on_click=on_click_to_mode_menu,
+                on_click=on_click_mode_menu,
             ),
             state=SetupMenu.GENERATE,
             getter=get_setups,
@@ -68,7 +69,7 @@ def setup_menu() -> Dialog:
             ),
             Row(
                 Button(Const("←"), id="backspace", on_click=on_backspace),
-                Button(Const("✓"), id="apply", on_click=on_confirm),
+                Button(Const("✓"), id="apply", on_click=on_random),
             ),
             Start(I18nFormat("back-btn"), id="back", state=ModeMenu.GENERATE),
             getter=get_pincode_data,

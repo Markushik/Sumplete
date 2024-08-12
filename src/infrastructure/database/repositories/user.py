@@ -17,19 +17,13 @@ class UserRepo(IUserRepo):
 
     async def update_lang(self, user: UserDTO) -> None:
         stmt = (
-            update(User)
-            .where(User.tg_id == user.tg_id)
-            .values(language=user.language)
+            update(User).where(User.tg_id == user.tg_id).values(language=user.language)
         )
         await self.session.execute(stmt)
         await self.session.flush()
 
     async def update_notify(self, tg_id: int, notify: bool) -> None:
-        stmt = (
-            update(User)
-            .where(User.tg_id == tg_id)
-            .values(notify=notify)
-        )
+        stmt = update(User).where(User.tg_id == tg_id).values(notify=notify)
         await self.session.execute(stmt)
         await self.session.flush()
 
@@ -39,3 +33,6 @@ class UserRepo(IUserRepo):
         )
         await self.session.execute(stmt)
         await self.session.flush()
+
+    async def get(self, tg_id: int):
+        return await self.session.get(User, tg_id)

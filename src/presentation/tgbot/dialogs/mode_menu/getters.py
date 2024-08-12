@@ -29,5 +29,4 @@ async def getter(dialog_manager: DialogManager, **kwargs):
                 l10n.format_value("search-msg"),
             ),
         ]
-
     }

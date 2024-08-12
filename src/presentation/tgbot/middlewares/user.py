@@ -1,5 +1,7 @@
 from typing import Any, Awaitable, Callable, Dict, Union
 
+from adaptix import Retort
+
 from aiogram.dispatcher.middlewares.base import BaseMiddleware
 from aiogram.types import CallbackQuery, Message
 
@@ -7,7 +9,6 @@ from src.domain.constants import DEFAULT_LOCALE
 from src.domain.dto.user import UserDTO
 from src.domain.usecases.user import CreateUser
 from src.infrastructure.redis.gateways.user import UserCacheGateway
-from adaptix import Retort
 
 
 class UserMiddleware(BaseMiddleware):
