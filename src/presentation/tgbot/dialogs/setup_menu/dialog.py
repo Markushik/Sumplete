@@ -11,11 +11,12 @@ from src.presentation.tgbot.states.user import ModeMenu, SetupMenu
 from .getters import get_pincode_data, get_setups
 from .handers import (
     on_backspace,
-    on_generate,
     on_click_mode_menu,
     on_confirm,
+    on_generate,
     on_input,
-    on_select, on_random,
+    on_random,
+    on_select,
 )
 
 

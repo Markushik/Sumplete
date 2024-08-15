@@ -31,7 +31,7 @@ emoji-btn = Emoji
 size-btn = Sizes
 complexity-btn = Complexities
 
-# --- Text --- #
+# --- Messages --- #
 start-message =
     1️⃣ <b>Sumplete</b> — puzzle game invented by <b>AI</b>
     This game combines 3 popular puzzles: <b>Sudoku</b>, <b>Kakuro</b> and <b>Hitori</b>

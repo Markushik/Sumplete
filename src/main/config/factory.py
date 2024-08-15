@@ -1,12 +1,12 @@
 from dishka import provide, Provider, Scope
 
 from src.main.config.models import (
-    AppConfig,
+    CommonConfig,
     BotConfig,
     Config,
     DatabaseConfig,
     RedisConfig,
-    TokenConfig,
+    NatsConfig,
 )
 
 
@@ -22,16 +22,12 @@ class ConfigProvider(Provider):
         return self.config
 
     @provide
-    def get_token_config(self) -> TokenConfig:
-        return self.config.token
-
-    @provide
-    def get_app_config(self) -> AppConfig:
-        return self.config.app
-
-    @provide
     def get_bot_config(self) -> BotConfig:
         return self.config.bot
+
+    @provide
+    def get_common_config(self) -> CommonConfig:
+        return self.config.common
 
     @provide
     def get_database_config(self) -> DatabaseConfig:
@@ -40,3 +36,7 @@ class ConfigProvider(Provider):
     @provide
     def get_redis_config(self) -> RedisConfig:
         return self.config.redis
+
+    @provide
+    def get_nats_config(self) -> NatsConfig:
+        return self.config.nats

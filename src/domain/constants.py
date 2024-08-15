@@ -31,6 +31,7 @@ class Complexity(Enum):
     ADVANCED = Advanced
     EXPERT = Expert
 
+
 class Emoji(Enum):
     DELETED = "❌"
     KEEP = "✅"

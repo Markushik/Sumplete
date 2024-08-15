@@ -1,7 +1,5 @@
 from typing import Any, Awaitable, Callable, Dict, Union
 
-from adaptix import Retort
-
 from aiogram.dispatcher.middlewares.base import BaseMiddleware
 from aiogram.types import CallbackQuery, Message
 

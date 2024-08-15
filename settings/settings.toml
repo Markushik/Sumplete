@@ -1,8 +1,5 @@
-[development.app]
+[development.common]
 level = 'debug'
-
-[development.bot]
-storage = 'redis'
 
 [development.database]
 host = 'localhost'
@@ -16,4 +13,7 @@ driver = 'postgresql+psycopg'
 host = 'localhost'
 port = 6379
 database = 1
-database_fsm = 0
+
+[development.nats]
+host = 'localhost'
+port = 4222

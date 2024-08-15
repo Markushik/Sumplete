@@ -5,7 +5,7 @@ from redis.asyncio import ConnectionPool, Redis
 
 from src.infrastructure.redis.gateways.user import UserCacheGateway
 from src.main.builders import create_redis_url
-from src.main.config.models import RedisConfig
+from src.main.config.models import RedisConfig, Config
 
 
 class RedisFSM(Redis):
@@ -37,12 +37,12 @@ class RedisProvider(Provider):
 
     @provide(scope=Scope.APP)
     async def create_fsm_pool(
-        self, config: RedisConfig
+            self, config: Config
     ) -> AsyncIterable[ConnectionPoolFSM]:
         pool = ConnectionPoolFSM(
-            host=config.host,
-            port=config.port,
-            db=config.database_fsm,
+            host=config.redis.host,
+            port=config.redis.port,
+            db=config.bot.database,
         )
         yield pool
 

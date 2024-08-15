@@ -10,7 +10,7 @@ from dishka import AsyncContainer, provide, Provider, Scope
 from dishka.integrations.aiogram import setup_dishka
 
 from src.infrastructure.redis.factory import RedisFSM
-from src.main.config.models import TokenConfig
+from src.main.config.models import BotConfig
 from src.presentation.tgbot.dialogs.dialog_extras.i18n.loader import locales_loader
 from src.presentation.tgbot.middlewares import setup_middlewares
 from src.presentation.tgbot.setup import setup_routers
@@ -53,7 +53,7 @@ class DispProvider(Provider):
 
 class BotProvider(Provider):
     @provide(scope=Scope.APP)
-    async def get_bot(self, config: TokenConfig) -> AsyncIterable[Bot]:
+    async def get_bot(self, config: BotConfig) -> AsyncIterable[Bot]:
         async with Bot(
             token=config.token,
             default=DefaultBotProperties(

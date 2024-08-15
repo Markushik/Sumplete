@@ -1,44 +1,44 @@
-from dataclasses import dataclass
+from attrs import define
 
 
-@dataclass(slots=True)
-class TokenConfig:
-    token: str
-
-
-@dataclass(slots=True)
-class AppConfig:
-    level: str  # level logging
-
-
-@dataclass(slots=True)
+@define(slots=True)
 class BotConfig:
-    storage: str
-    # parse_mode: str
+    token: str
+    database: int
 
 
-@dataclass(slots=True)
+@define(slots=True)
+class CommonConfig:
+    level: str
+
+
+@define(slots=True)
 class DatabaseConfig:
     host: str
     port: int
     username: str
     password: str
     database: str
-    driver: str = "postgresql+asyncpg"
+    driver: str
 
 
-@dataclass(slots=True)
+@define(slots=True)
 class RedisConfig:
     host: str
     port: int
     database: int
-    database_fsm: int
 
 
-@dataclass(slots=True)
+@define(slots=True)
+class NatsConfig:
+    host: str
+    port: int
+
+
+@define(slots=True)
 class Config:
-    token: TokenConfig
-    app: AppConfig
     bot: BotConfig
+    common: CommonConfig
     database: DatabaseConfig
     redis: RedisConfig
+    nats: NatsConfig

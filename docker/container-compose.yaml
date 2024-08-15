@@ -27,15 +27,6 @@ services:
     #    network_mode: host
     restart: on-failure
 
-  pg-admin:
-    container_name: pg-admin
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: zem_mark@yahoo.com
-      PGADMIN_DEFAULT_PASSWORD: postgres
-    ports:
-      - 80:80
-
   nats:
     container_name: nats
     image: nats:2.10.12-alpine

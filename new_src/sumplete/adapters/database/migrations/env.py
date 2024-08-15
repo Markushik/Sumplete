@@ -1,13 +1,14 @@
 import asyncio
 from logging.config import fileConfig
 
+import winloop
 from alembic import context
-from sqlalchemy import URL
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import create_async_engine
 
-from src.infrastructure.database import models
-from src.main.config.loader import get_config
+from new_src.sumplete.adapters.database import schemas
+from new_src.sumplete.common.builder.url import build_database_url
+from new_src.sumplete.common.config.loader import get_config
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -22,7 +23,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = models.Base.metadata
+target_metadata = schemas.BaseSchema.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -31,17 +32,6 @@ target_metadata = models.Base.metadata
 
 my_config = get_config()
 database = my_config.database
-
-
-def get_url() -> URL:
-    return URL.create(
-        drivername=database.driver,
-        username=database.username,
-        password=database.password,
-        host=database.host,
-        port=database.port,
-        database=database.database,
-    )
 
 
 def run_migrations_offline() -> None:
@@ -58,7 +48,7 @@ def run_migrations_offline() -> None:
     """
     # url = config.get_main_option("sqlalchemy.url")
     context.configure(
-        url=get_url(),
+        url=build_database_url(database),
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
@@ -80,7 +70,7 @@ async def run_async_migrations() -> None:
     and associate a connection with the context.
 
     """
-    connectable = create_async_engine(url=get_url())
+    connectable = create_async_engine(url=build_database_url(database))
 
     async with connectable.connect() as connection:
         await connection.run_sync(do_run_migrations)
@@ -92,7 +82,7 @@ def run_migrations_online() -> None:
     """Run migrations in 'online' mode."""
 
     # asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())  # if u not use Windows ~> comment
-    asyncio.run(run_async_migrations())
+    winloop.run(run_async_migrations())
 
 
 if context.is_offline_mode():

@@ -97,6 +97,7 @@ pathspec==0.12.1
     # via trailrunner
 pendulum==3.0.0
     # via sumplete
+podman-compose==1.2.0
 psycopg==3.2.1
     # via sumplete
 psycopg-binary==3.2.1
@@ -112,10 +113,13 @@ pygls==1.3.1
 python-dateutil==2.9.0.post0
     # via pendulum
     # via time-machine
+python-dotenv==1.0.1
+    # via podman-compose
 pytz==2024.1
     # via fluent-runtime
 pyyaml==6.0.2
     # via libcst
+    # via podman-compose
 redis==5.0.8
     # via dynaconf
 ruff==0.5.6
