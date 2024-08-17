@@ -33,14 +33,14 @@ def settings_menu() -> Dialog:
             SwitchTo(I18nFormat("anncmt-btn"), "anncmt", SettingsMenu.ANNCMT),
             Row(
                 SwitchTo(
-                    I18nFormat("language-btn"),
-                    "language",
-                    SettingsMenu.LANGUAGE,
-                ),
-                SwitchTo(
                     I18nFormat("profile-btn"),
                     "profile",
                     SettingsMenu.PROFILE,
+                ),
+                SwitchTo(
+                    I18nFormat("language-btn"),
+                    "language",
+                    SettingsMenu.LANGUAGE,
                 ),
             ),
             SwitchTo(I18nFormat("customzn-btn"), "customzn", SettingsMenu.CUSTOMZN),

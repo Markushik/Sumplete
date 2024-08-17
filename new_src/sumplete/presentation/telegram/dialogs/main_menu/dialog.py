@@ -11,7 +11,7 @@ def main_menu() -> Dialog:
     return Dialog(
         Window(
             I18nFormat("start-msg"),
-            Start(I18nFormat("play-btn"), id="play", state=ModeMenu.GENERATE),
+            Start(I18nFormat("play-btn"), id="play", state=ModeMenu.FOLD),
             Group(
                 Url(I18nFormat("rules-btn"), id="rules", url=Const(TELEGRAPH_LINK)),
                 Start(I18nFormat("ranking-btn"), id="ranking", state=RankingMenu.RANKS),

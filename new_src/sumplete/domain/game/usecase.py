@@ -6,7 +6,7 @@ from adaptix.conversion import get_converter
 from attrs import define, field, asdict
 from numpy.random import randint, choice
 
-from new_src.sumplete.adapters.database.schemas import Puzzle
+from new_src.sumplete.adapters.database.schemas import Puzzle, Solve, Rank
 from new_src.sumplete.adapters.database.uow.implement import UnitOfWork
 from .schema import Cell, Value, Field, Setup, Game, Meta
 from ..base.usecase import Usecase
@@ -46,6 +46,25 @@ def check_intersection(
             return True
 
     return False
+
+
+@define(slots=True)
+class SolveDTO:
+    user_id: int
+    puzzle_id: int
+    size: int
+
+
+@define(slots=True)
+class RankDTO:
+    user_id: int
+    score: int
+
+
+@define(slots=True)
+class ResultDTO:
+    solve: SolveDTO
+    rank: RankDTO
 
 
 @define(slots=True, kw_only=True)
@@ -212,19 +231,19 @@ class CreatePuzzle(Usecase[Setup, Game]):
     def __init__(self, save: SaveField):
         self.save = save
 
-    async def __call__(self, data: Setup) -> dict:
-        create = create_puzzle(data)
+    async def __call__(self, setup: Setup) -> dict:
+        create = create_puzzle(setup)
         puzzle = await self.save(create)
 
         meta = pack_to_meta(
-            locale=data.locale,
+            locale=setup.locale,
             puzzle_id=puzzle.puzzle_id,
             size=puzzle.size,
             score=int(puzzle.score),
             complexity=puzzle.complexity,
         )
         field = pack_to_fields(
-            style=data.style,
+            style=setup.style,
             size=create.size,
             zeroed=create.zeroed,
             modified=create.modified,
@@ -234,3 +253,47 @@ class CreatePuzzle(Usecase[Setup, Game]):
         data = Game(meta=meta, field=field)
 
         return asdict(data)
+
+
+class SearchPuzzle(Usecase[..., Game]):
+    def __init__(self): ...
+
+    async def __call__(
+        self,
+        puzzle: Puzzle,
+        setup: Setup,
+    ) -> dict:
+        meta = pack_to_meta(
+            locale=setup.locale,
+            puzzle_id=puzzle.puzzle_id,
+            size=puzzle.size,
+            score=int(puzzle.score),
+            complexity=puzzle.complexity,
+        )
+        field = pack_to_fields(
+            style=setup.style,
+            size=puzzle.size,
+            zeroed=puzzle.zeroed,
+            modified=puzzle.modified,
+            horizontal=puzzle.horizontal,
+            vertical=iter(puzzle.vertical),
+        )
+        data = Game(meta=meta, field=field)
+
+        return asdict(data)
+
+
+class ResultPuzzle(Usecase[ResultDTO, ...]):
+    def __init__(self, uow: UnitOfWork):
+        self.uow = uow
+
+    async def __call__(self, data: ResultDTO):
+        converter = get_converter(SolveDTO, Solve)
+        solve = converter(data.solve)
+
+        converter = get_converter(RankDTO, Rank)
+        rank = converter(data.rank)
+
+        await self.uow.solve.add(solve)
+        await self.uow.rank.add(rank)
+        await self.uow.commit()

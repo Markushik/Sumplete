@@ -1,8 +1,14 @@
 from adaptix import Retort
 from aiogram_dialog import DialogManager
+from dishka.integrations.aiogram import FromDishka
 from pendulum import now
 
-from new_src.sumplete.domain.game.usecase import check_intersection
+from new_src.sumplete.adapters.database.schemas import Solve, Rank
+from new_src.sumplete.adapters.database.uow.implement import UnitOfWork
+from new_src.sumplete.common.di.extras import inject_getter
+from new_src.sumplete.domain.game.usecase import (
+    check_intersection,
+)
 
 retort = Retort()
 
@@ -11,7 +17,8 @@ def get_started_at(locale: str) -> str:  # todo: rewrite
     return now("Europe/Moscow").format("D MMMM Y, HH:mm", locale=locale)
 
 
-async def getter(dialog_manager: DialogManager, **kwargs):
+@inject_getter
+async def getter(dialog_manager: DialogManager, uow: FromDishka[UnitOfWork], **kwargs):
     if play := dialog_manager.dialog_data.get("play"):
         size = dialog_manager.dialog_data["size"]
         score = dialog_manager.dialog_data["score"]
@@ -22,12 +29,20 @@ async def getter(dialog_manager: DialogManager, **kwargs):
         solved = dialog_manager.dialog_data["field"]["solved"]
         unsolved = dialog_manager.dialog_data["field"]["unsolved"]
 
+        finder = dialog_manager.find("lst_grp")
+
         if check_intersection(
             cells=cells,
             solved=solved,
             unsolved=unsolved,
-            finder=dialog_manager.find("lst_grp"),
+            finder=finder,
         ):
+            user_id = dialog_manager.event.from_user.id
+
+            await uow.rank.add(Rank(user_id=user_id, score=Rank.score + score))
+            await uow.solve.add(Solve(user_id=user_id, puzzle_id=puzzle_id, size=size))
+            await uow.commit()
+
             play = False
 
         return {

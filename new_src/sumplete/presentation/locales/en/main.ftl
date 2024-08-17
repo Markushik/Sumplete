@@ -4,19 +4,21 @@ rules-btn = 📒 Rules
 ranking-btn = ⭐️ Ranking
 
 settings-btn = ⚙️ Settings
-customzn-btn = 💅 Customization
+customzn-btn = ✏️ Customization
 check-btn = 👀 View
-language-btn = 🌏 Language
-anncmt-btn = 🔔 Announcement
+language-btn = 🌐 Language
+anncmt-btn = 💬 Announcement
 profile-btn = 👤 Profile
 delete-profile-btn = 🗑️ Delete
 
 support-btn = 🆘 Support
-back-btn = ⬅️ Back
-back-to-main-btn = ↪️ Back
+back-btn = ← Back
+back-to-main-btn = ☰ To dashboard
+unfold-btn = ↘ Unfold
+fold-btn = ↖ Fold
 
 generate-btn = 🔄 Generate
-confirm-btn = ✅ Confirm
+confirm-btn = ✓ Approve
 
 daily-btn = 🗓️ Daily
 search-btn = 🔍 Search
@@ -59,23 +61,16 @@ anncmt-msg =
 
 input-error-msg = 🚫 Error: Input a lot of count symbols
 parameters-error-msg = 🚫 Error: Not all parameters are selected
+search-error-msg = 🚫 Error: Puzzle ID not exsist
 
 profile-msg = ...
-
-on-msg = ✅ Approve: Switched-on sending Daily Puzzle
-off-msg = ✅ Approve: Switched-off sending Daily Puzzle
-
-format-msg = ✅ Approve: Style has been changed on Format
-emoji-msg = ✅ Approve: Style has been changed on Emoji
-
-clear-id = ✅ Approve: The ID has been cleared
 
 puzzle-solved = 🎉 <b>The puzzle has been solved, you are excellent!</b>
 
 choose-msg =
     ℹ️ <b>When</b> selects size and difficult puzzle game starting when <b>confirm setups</b>
 
-    👇 <b>Choose</b> the field <b>size</b> and <b>difficult</b>:
+    ➡️ <b>Choose</b> the field <b>size</b> and <b>complexity</b>:
 
 play-msg =
     <b>Puzzle №</b> <u>{ $puzzle_id }</u>
@@ -113,4 +108,4 @@ search-msg =
 id-msg =
     🆔 <b>Type</b> or <b>enter</b> the puzzle <b>ID</b>
 
-    <b>Typed ID</b>: { $text }
+    <b>Typed ID</b>: { $puzzle_id }
