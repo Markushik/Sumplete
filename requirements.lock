@@ -26,6 +26,9 @@ alembic==1.13.2
     # via sumplete
 annotated-types==0.7.0
     # via pydantic
+anyio==4.4.0
+    # via fast-depends
+    # via faststream
 asyncpg==0.29.0
     # via sumplete
 attrs==24.2.0
@@ -42,9 +45,17 @@ cattrs==23.2.3
     # via pygls
 certifi==2024.7.4
     # via aiogram
+click==8.1.7
+    # via typer
+colorama==0.4.6
+    # via click
 dishka==1.2.0
     # via sumplete
 dynaconf==3.2.6
+    # via sumplete
+fast-depends==2.4.8
+    # via faststream
+faststream==0.5.18
     # via sumplete
 fluent-runtime==0.4.0
     # via sumplete
@@ -56,6 +67,7 @@ frozenlist==1.4.1
 greenlet==3.0.3
     # via sqlalchemy
 idna==3.7
+    # via anyio
     # via yarl
 jinja2==3.1.4
     # via aiogram-dialog
@@ -67,9 +79,13 @@ magic-filter==1.0.12
     # via aiogram-dialog
 mako==1.3.5
     # via alembic
+markdown-it-py==3.0.0
+    # via rich
 markupsafe==2.1.5
     # via jinja2
     # via mako
+mdurl==0.1.2
+    # via markdown-it-py
 multidict==6.0.5
     # via aiohttp
     # via yarl
@@ -77,6 +93,8 @@ mypy==1.11.1
     # via sumplete
 mypy-extensions==1.0.0
     # via mypy
+nats-py==2.8.0
+    # via faststream
 numpy==2.0.1
     # via sumplete
 orjson==3.10.7
@@ -89,27 +107,36 @@ psycopg==3.2.1
     # via sumplete
 psycopg-binary==3.2.1
     # via psycopg
-psycopg-pool==3.2.2
-    # via psycopg
 pydantic==2.8.2
     # via aiogram
+    # via fast-depends
 pydantic-core==2.20.1
     # via pydantic
 pygls==1.3.1
     # via ruff-lsp
+pygments==2.18.0
+    # via rich
 python-dateutil==2.9.0.post0
     # via pendulum
     # via time-machine
+python-json-logger==2.0.7
+    # via sumplete
 pytz==2024.1
     # via fluent-runtime
 redis==5.0.8
     # via dynaconf
+rich==13.7.1
+    # via typer
 ruff==0.5.7
     # via ruff-lsp
 ruff-lsp==0.0.54
     # via sumplete
+shellingham==1.5.4
+    # via typer
 six==1.16.0
     # via python-dateutil
+sniffio==1.3.1
+    # via anyio
 sqlalchemy==2.0.32
     # via alembic
     # via sumplete
@@ -117,18 +144,21 @@ structlog==24.4.0
     # via sumplete
 time-machine==2.15.0
     # via pendulum
+typer==0.12.4
+    # via faststream
 typing-extensions==4.12.2
     # via aiogram
     # via alembic
+    # via faststream
     # via fluent-runtime
     # via fluent-syntax
     # via mypy
     # via psycopg
-    # via psycopg-pool
     # via pydantic
     # via pydantic-core
     # via ruff-lsp
     # via sqlalchemy
+    # via typer
 tzdata==2024.1
     # via pendulum
     # via psycopg

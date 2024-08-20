@@ -1,29 +1,25 @@
 version: 3
 
 tasks:
+
   default:
     silent: true
     cmd: task --list --color
 
-  fmt:
-    desc: Run format files
-    deps: [ ruff, sort ]
-
-  check:
-    desc: Run mypy type checker
-    cmd: rye run mypy src
-
-  sort:
-    desc: Run usort sort imports
-    cmd: rye run usort format src
-
   ruff:
-    desc: Run ruff format files
     cmd: rye run ruff format src
 
-  migrate:
-    ...
-  migration:
-    ...
-  generate:
-    ...
+  sort:
+    cmd: rye run usort format src
+
+  fmt:
+    deps: [ ruff, sort ]
+
+  revision:
+    cmd: rye run alembic revision --autogenerate
+
+  upgrade:
+    cmd: rye run alembic upgrade head
+
+  mgrt:
+    deps: [ revision, upgrade ]
