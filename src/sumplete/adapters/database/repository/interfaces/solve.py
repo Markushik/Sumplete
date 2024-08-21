@@ -4,5 +4,5 @@ from ...schemas.solve import Solve
 
 
 class ISolveRepo(Protocol):
-    async def add(self, data: Solve) -> None:
+    async def create(self, data: Solve) -> None:
         raise NotImplementedError

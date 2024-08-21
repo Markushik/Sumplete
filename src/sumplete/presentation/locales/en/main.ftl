@@ -10,7 +10,7 @@ anncmt-btn = 🔔 Announcement
 support-btn = Support
 
 back-btn = ← Back
-back-to-main-btn = ☰ Dashboard
+back-to-main-btn = ☰ Home
 unfold-btn = ↘ Unfold
 fold-btn = ↖ Fold
 
@@ -61,7 +61,7 @@ input-error-msg = 🚫 Error: Input a lot of count symbols
 parameters-error-msg = 🚫 Error: Not all parameters are selected
 search-error-msg = 🚫 Error: Puzzle ID not exsist
 
-profile-msg = ...
+leaderboard-msg = 🏆 Leaderboard
 
 puzzle-solved = 🎉 <b>The puzzle has been solved, you are excellent!</b>
 

@@ -29,7 +29,7 @@ class UserRepo(IUserRepo):
         await self.session.flush()
 
     async def update_style(self, user_id: int, style: str) -> None:
-        request = update(User).where(User.user_id == user_id).values(style=style)
+        request = update(User)
         await self.session.execute(request)
         await self.session.flush()
 

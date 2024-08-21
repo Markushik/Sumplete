@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 async def _main() -> None:
-    configure_logger()
+    # configure_logger()
     dishka = setup_dishka()
 
     bot = await dishka.get(Bot)

@@ -3,7 +3,7 @@ from functools import cache
 
 
 @cache
-def configure_logger():
+def configure_logger():  # todo output with rich
     logging.config.dictConfig(
         {
             "version": 1,
@@ -43,7 +43,7 @@ def configure_logger():
                 },
                 "stdout": {
                     "class": "logging.StreamHandler",
-                    "level": "DEBUG",
+                    "level": "INFO",
                     "formatter": "json",
                     "stream": "ext://sys.stderr",
                 },
@@ -51,7 +51,7 @@ def configure_logger():
                     "class": "logging.handlers.RotatingFileHandler",
                     "level": "DEBUG",
                     "formatter": "json",
-                    "filename": "bot.log",
+                    "filename": "../../../../logs/bot.log",
                     "maxBytes": 10_485_760,
                     "backupCount": 3,
                 },
@@ -59,7 +59,7 @@ def configure_logger():
             "loggers": {
                 "root": {"level": "DEBUG", "handlers": ["stdout", "file"]},
                 "sqlalchemy.engine": {
-                    "level": "DEBUG",
+                    "level": "INFO",
                     "handlers": ["stdout"],
                     "propagate": False,
                 },

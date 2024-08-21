@@ -157,8 +157,6 @@ sqlalchemy==2.0.32
     # via sumplete
 stdlibs==2024.5.15
     # via usort
-structlog==24.4.0
-    # via sumplete
 time-machine==2.15.0
     # via pendulum
 toml==0.10.2

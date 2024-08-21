@@ -5,7 +5,7 @@ from adaptix.conversion import get_converter
 from attrs import asdict, define, field
 from numpy.random import choice, randint
 
-from src.sumplete.adapters.database.schemas import Puzzle
+from src.sumplete.adapters.database.schemas import Solve, Rank, Puzzle
 from src.sumplete.adapters.database.uow.implement import UnitOfWork
 from .schema import Cell, Field, Game, Meta, Setup, Value
 from ..base.usecase import Usecase
@@ -253,3 +253,22 @@ class SearchPuzzle(Usecase[..., Game]):
         data = Game(meta=meta, field=field)
 
         return asdict(data)
+
+
+class ResultPuzzle(Usecase[..., None]):
+    def __init__(self, uow: UnitOfWork):
+        self.uow = uow
+
+    async def __call__(
+        self, user_id: int, puzzle_id: int, size: int, score: int
+    ) -> None:
+        rank = await self.uow.rank.get(user_id)
+
+        if rank is None:
+            await self.uow.rank.create(Rank(user_id=user_id, score=0))
+
+        await self.uow.rank.update(user_id=user_id, score=score)
+        await self.uow.solve.create(
+            Solve(user_id=user_id, puzzle_id=puzzle_id, size=size)
+        )
+        await self.uow.commit()

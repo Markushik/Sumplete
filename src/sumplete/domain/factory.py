@@ -2,7 +2,7 @@ from dishka import provide, Provider, Scope
 
 from src.sumplete.adapters.database.uow.implement import UnitOfWork
 from src.sumplete.adapters.redis.adapter.implement import RedisAdapter
-from .game.usecase import CreatePuzzle, SaveField, SearchPuzzle
+from .game.usecase import CreatePuzzle, SaveField, SearchPuzzle, ResultPuzzle
 from .user.usecase import UpdateLocale, UserCreate, UserExist, UserHandler
 
 
@@ -36,3 +36,7 @@ class UsecaseProvider(Provider):
     @provide
     async def puzzle_search(self) -> SearchPuzzle:
         return SearchPuzzle()
+
+    @provide
+    async def puzzle_result(self, uow: UnitOfWork) -> ResultPuzzle:
+        return ResultPuzzle(uow=uow)

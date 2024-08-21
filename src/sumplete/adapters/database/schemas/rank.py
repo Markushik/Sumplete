@@ -10,4 +10,4 @@ class Rank(BaseSchema):
     user_id: Mapped[int] = mapped_column(
         BigInteger, ForeignKey("users.user_id"), primary_key=True
     )
-    score: Mapped[int] = mapped_column(Integer)
+    score: Mapped[int] = mapped_column(Integer, default=0)

@@ -2,9 +2,8 @@ import pendulum
 from aiogram_dialog import DialogManager
 from dishka.integrations.aiogram import FromDishka
 
-from src.sumplete.adapters.database.schemas import Solve
-from src.sumplete.adapters.database.uow.implement import UnitOfWork
 from src.sumplete.common.di.extras import inject_getter
+from src.sumplete.domain.game.usecase import ResultPuzzle
 
 
 def check_intersection(
@@ -34,7 +33,9 @@ def started_at_(locale: str) -> str:
 
 
 @inject_getter
-async def getter(dialog_manager: DialogManager, uow: FromDishka[UnitOfWork], **kwargs):
+async def getter(
+    dialog_manager: DialogManager, result: FromDishka[ResultPuzzle], **kwargs
+):
     if play := dialog_manager.dialog_data.get("play"):
         size = dialog_manager.dialog_data["size"]
         score = dialog_manager.dialog_data["score"]
@@ -53,11 +54,12 @@ async def getter(dialog_manager: DialogManager, uow: FromDishka[UnitOfWork], **k
             unsolved=unsolved,
             finder=finder,
         ):
-            user_id = dialog_manager.event.from_user.id
-
-            await uow.solve.add(Solve(user_id=user_id, puzzle_id=puzzle_id, size=size))
-            await uow.commit()
-
+            await result(
+                user_id=dialog_manager.event.from_user.id,
+                puzzle_id=puzzle_id,
+                size=size,
+                score=score,
+            )
             play = False
 
         return {

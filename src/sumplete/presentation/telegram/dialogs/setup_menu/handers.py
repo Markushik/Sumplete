@@ -15,6 +15,15 @@ async def on_menu(_, __, dialog_manager: DialogManager):
     await dialog_manager.start(state=ModeMenu.FOLD, mode=StartMode.RESET_STACK)
 
 
+async def on_size(_, __, dialog_manager: DialogManager, size: str):
+    dialog_manager.dialog_data["size"] = size
+    await dialog_manager.switch_to(SetupMenu.GENERATE)
+
+
+async def on_complexity(_, __, dialog_manager: DialogManager, complexity: str):
+    dialog_manager.dialog_data["complexity"] = complexity
+    await dialog_manager.switch_to(SetupMenu.GENERATE)
+
 
 @inject_handler
 async def on_generate(
@@ -24,13 +33,8 @@ async def on_generate(
     uow: FromDishka[UnitOfWork],
     create: FromDishka[CreatePuzzle],
 ) -> None | bool:
-    l10n = dialog_manager.middleware_data["l10n"]
-
-    size = dialog_manager.find("select_size").get_checked()
-    complexity = dialog_manager.find("select_complexity").get_checked()
-
-    if (size is None) or (complexity is None):
-        return await query.answer(l10n.format_value("parameters-error-msg"))
+    size = dialog_manager.dialog_data.get("size", "3")
+    complexity = dialog_manager.dialog_data.get("complexity", "easy")
 
     user = await uow.user.get(dialog_manager.event.from_user.id)
     pzle = await create(
@@ -38,7 +42,7 @@ async def on_generate(
             locale=user.locale,
             style=user.style,
             size=int(size[0]),
-            complexity=complexity,
+            complexity=complexity.lower(),
         )
     )
 
