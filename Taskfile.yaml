@@ -23,3 +23,6 @@ tasks:
 
   mgrt:
     deps: [ revision, upgrade ]
+
+  run:
+    cmd: rye run python -m src.sumplete.presentation.telegram

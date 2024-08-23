@@ -5,13 +5,12 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.base import BaseEventIsolation, BaseStorage, DefaultKeyBuilder
 from aiogram.fsm.storage.redis import RedisEventIsolation, RedisStorage
-from aiogram.types import BotCommand, BotCommandScopeDefault
 from aiogram_dialog import setup_dialogs
 from dishka import AsyncContainer, provide, Provider, Scope
 from dishka.integrations.aiogram import setup_dishka
 
-from src.sumplete.adapters.redis.factory import RedisFSM
-from src.sumplete.common.config.schemas import BotConfig
+from sumplete.shared.configuration.schemas import BotConfig
+from sumplete.infrastructure.redis.factory import RedisFSM
 from .dialogs import get_dialogs
 from .dialogs.extras.i18n.loader import locales_loader
 from .handlers import get_handlers

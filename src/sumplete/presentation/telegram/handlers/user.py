@@ -3,8 +3,8 @@ from aiogram.filters import CommandStart, Command
 from aiogram_dialog import DialogManager, StartMode
 from dishka.integrations.aiogram import FromDishka, inject
 
-from src.sumplete.domain.user.usecase import UserHandler
-from sumplete.domain.user.dto import UserDTO
+from sumplete.shared.models.user import UserDTO
+from sumplete.application.usecase.user import UserHandler
 from ..dialogs.main_menu.states import MainMenu
 from ..dialogs.mode_menu.states import ModeMenu
 

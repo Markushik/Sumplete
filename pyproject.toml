@@ -3,26 +3,21 @@ name = "sumplete"
 version = "0.1.0"
 description = "Add your description here"
 authors = [
-    { name = "Markushik", email = "zem_mark@yahoo.com" }
+    { name = "Markushik", email = "zemly@duck.com" }
 ]
 dependencies = [
-    "aiogram-dialog==2.2.0a5",
-    "sqlalchemy>=2.0.32",
-    "asyncpg>=0.29.0",
-    "dynaconf[redis]>=3.2.6",
-    "numpy>=2.0.1",
-    "adaptix>=3.0.0b7",
-    "fluent-runtime>=0.4.0",
-    "alembic>=1.13.2",
-    "dishka>=1.2.0",
-    "pendulum>=3.0.0",
-    "mypy>=1.11.1",
-    "orjson>=3.10.7",
     "winloop>=0.1.6",
+    "aiogram-dialog>=2.1.0",
+    "dishka>=1.3.0",
+    "adaptix>=3.0.0b7",
+    "dynaconf>=3.2.6",
+    "redis>=5.0.8",
+    "sqlalchemy>=2.0.32",
+    "pendulum>=3.0.0",
+    "fluent-runtime>=0.4.0",
     "psycopg[binary]>=3.2.1",
-    "ruff-lsp>=0.0.54",
-    "faststream[nats]>=0.5.18",
-    "python-json-logger>=2.0.7",
+    "numba>=0.60.0",
+    "numpy==2.0.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -34,10 +29,8 @@ build-backend = "hatchling.build"
 [tool.rye]
 managed = true
 dev-dependencies = [
-    "ruff>=0.5.6",
-    "usort>=1.0.8.post1",
-    "ruff-lsp>=0.0.54",
-    "podman-compose>=1.2.0",
+    "ruff>=0.6.2",
+    "ruff-lsp>=0.0.55",
 ]
 
 [tool.hatch.metadata]

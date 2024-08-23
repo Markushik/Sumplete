@@ -2,8 +2,8 @@ import pendulum
 from aiogram_dialog import DialogManager
 from dishka.integrations.aiogram import FromDishka
 
-from src.sumplete.common.di.extras import inject_getter
-from src.sumplete.domain.game.usecase import ResultPuzzle
+from sumplete.shared.di.extras import inject_getter
+from sumplete.application.usecase.game import ResultPuzzle
 
 
 def check_intersection(

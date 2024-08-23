@@ -1,9 +1,12 @@
+# python generated files
 __pycache__/
 *.py[oc]
 build/
 dist/
 wheels/
 *.egg-info
-.venv
 .idea
 /settings/.secrets.toml
+
+# venv
+.venv

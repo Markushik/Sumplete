@@ -1,10 +1,10 @@
 from aiogram_dialog import DialogManager, StartMode
 from dishka import FromDishka
 
-from src.sumplete.adapters.database.uow.implement import UnitOfWork
-from src.sumplete.common.di.extras import inject_handler
-from src.sumplete.domain.user.usecase import UpdateLocale
-from sumplete.domain.user.dto import UserDTO
+from sumplete.shared.models.user import UserDTO
+from sumplete.application.usecase.user import UpdateLocale
+from sumplete.infrastructure.database.uow.implement import UnitOfWork
+from sumplete.shared.di.extras import inject_handler
 from ..extras.i18n.updater import update_format
 from ..main_menu.states import MainMenu
 
@@ -51,7 +51,3 @@ async def on_customzn(
 ) -> None:
     await uow.user.update_style(user_id=dialog_manager.event.from_user.id, style=style)
     await uow.commit()
-
-
-@inject_handler
-async def on_profile(): ...

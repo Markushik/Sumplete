@@ -1,7 +1,7 @@
 from aiogram_dialog import DialogManager
 from attrs import define
 
-from src.sumplete.adapters.database.uow.implement import UnitOfWork
+from sumplete.infrastructure.database.uow.implement import UnitOfWork
 
 
 @define(slots=True)

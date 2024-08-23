@@ -2,13 +2,11 @@ from aiogram_dialog import Dialog, Window
 from aiogram_dialog.widgets.kbd import Row, Start, Url
 from aiogram_dialog.widgets.text import Const
 
+from .states import MainMenu
 from ..constants import TELEGRAPH_LINK
 from ..extras.i18n.format import I18nFormat
-from ..mode_menu.states import ModeMenu
 from ..ranking_menu.states import RankingMenu
 from ..settings_menu.states import SettingsMenu
-
-from .states import MainMenu
 
 
 def main_menu() -> Dialog:

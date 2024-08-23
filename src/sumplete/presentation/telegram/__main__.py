@@ -3,13 +3,12 @@ import logging
 import winloop
 from aiogram import Bot, Dispatcher
 
-from src.sumplete.common.di.setup import setup_dishka
-from src.sumplete.common.logger import configure_logger
+from sumplete.shared.di.setup import setup_dishka
 
 logger = logging.getLogger(__name__)
 
 
-async def _main() -> None:
+async def main() -> None:
     # configure_logger()
     dishka = setup_dishka()
 
@@ -26,6 +25,6 @@ async def _main() -> None:
 
 if __name__ == "__main__":
     try:
-        winloop.run(_main())
+        winloop.run(main())
     except (KeyboardInterrupt, SystemExit):
         ...

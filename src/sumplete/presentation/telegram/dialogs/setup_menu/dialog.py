@@ -22,6 +22,8 @@ from .handers import (
     on_select,
     on_size,
     on_complexity,
+    on_yes,
+    on_no,
 )
 from .states import SetupMenu
 from ..extras.i18n.format import I18nFormat
@@ -76,6 +78,15 @@ def setup_menu() -> Dialog:
             Start(I18nFormat("back-btn"), id="back", state=ModeMenu.UNFOLD),
             getter=get_menu,
             state=SetupMenu.SEARCH,
+        ),
+        Window(
+            I18nFormat("solve-msg"),
+            Row(
+                Button(I18nFormat("yes-btn"), id="yes", on_click=on_yes),
+                Button(I18nFormat("no-btn"), id="no", on_click=on_no),
+            ),
+            SwitchTo(I18nFormat("back-btn"), id="back", state=SetupMenu.SEARCH),
+            state=SetupMenu.SOLVED,
         ),
         Window(
             Format("..."),

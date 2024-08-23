@@ -4,8 +4,7 @@ from aiogram.dispatcher.middlewares.base import BaseMiddleware
 from aiogram.types import CallbackQuery, Message, TelegramObject
 from fluent.runtime import FluentLocalization
 
-from src.sumplete.adapters.redis.adapter.implement import RedisAdapter
-from sumplete.domain.user.dto import UserDTO
+from sumplete.infrastructure.redis.adapter.implement import RedisAdapter
 
 
 class I18nMiddleware(BaseMiddleware):
@@ -27,18 +26,7 @@ class I18nMiddleware(BaseMiddleware):
         cache = await dishka.get(RedisAdapter)
         locale = await cache.get_locale(event.from_user.id)
 
-        # if locale is None:
-        #     create_user = await dishka.get(...)  # create user usecase
-        #     await create_user(
-        #         UserDTO(
-        #             user_id=event.from_user.id,
-        #             first_name=event.from_user.first_name,
-        #             last_name=event.from_user.last_name,
-        #             username=event.from_user.username,
-        #         )
-        #     )
-
-        l10n: FluentLocalization = self.l10ns[locale or "en"]
+        l10n: FluentLocalization = self.l10ns.get(locale, "en")
 
         data["l10ns"] = self.l10ns
         data["l10n"] = l10n

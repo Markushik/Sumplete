@@ -1,8 +1,8 @@
 from aiogram_dialog import DialogManager
 from dishka.integrations.aiogram import FromDishka
 
-from src.sumplete.adapters.database.uow.implement import UnitOfWork
-from sumplete.common.di.extras import inject_getter
+from sumplete.infrastructure.database.uow.implement import UnitOfWork
+from sumplete.shared.di.extras import inject_getter
 
 
 @inject_getter

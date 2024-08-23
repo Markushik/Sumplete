@@ -1,5 +1,5 @@
 from aiogram_dialog import Dialog, Window
-from aiogram_dialog.widgets.kbd import Back, Button, Row, SwitchTo
+from aiogram_dialog.widgets.kbd import Back, Button, SwitchTo
 
 from ..extras.i18n.format import I18nFormat
 
@@ -25,22 +25,20 @@ def mode_menu() -> Dialog:
             state=ModeMenu.FOLD,
         ),
         Window(
-            I18nFormat("Some message"),
+            I18nFormat("mode-msg"),
             Button(I18nFormat("generate-btn"), "generate", on_click=on_generate),
             Button(I18nFormat("random-btn"), "random", on_click=on_random),
-            Row(
-                Button(I18nFormat("daily-btn"), "daily"),
-                Button(I18nFormat("search-btn"), "search", on_click=on_search),
-            ),
+            Button(I18nFormat("daily-btn"), "daily"),
+            Button(I18nFormat("search-btn"), "search", on_click=on_search),
             Back(
                 I18nFormat("fold-btn"),
                 "fold",
             ),
-            # Button(
-            #     I18nFormat("back-to-main-btn"),
-            #     "to_main",
-            #     on_main,
-            # ),
+            Button(
+                I18nFormat("back-to-main-btn"),
+                "to_main",
+                on_main,
+            ),
             state=ModeMenu.UNFOLD,
         ),
     )

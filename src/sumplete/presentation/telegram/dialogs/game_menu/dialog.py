@@ -3,6 +3,7 @@ from aiogram_dialog.widgets.kbd import Button, Group, ListGroup, Row, Toggle
 from aiogram_dialog.widgets.text import Const, Format
 from magic_filter import F
 
+from .handlers import on_clear
 from ..extras.custom.group import CustomGroup
 from ..extras.i18n.format import I18nFormat
 
@@ -33,7 +34,7 @@ def game_menu() -> Dialog:
                 Row(
                     Button(Const("Check"), id="check"),
                     Button(Const("Hint"), id="hint"),
-                    Button(Const("Clear"), id="clear"),
+                    Button(Const("Clear"), id="clear", on_click=on_clear),
                 ),
                 Row(
                     Button(Const("Reveal"), id="reveal"),

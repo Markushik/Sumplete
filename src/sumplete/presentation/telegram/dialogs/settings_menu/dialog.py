@@ -7,14 +7,12 @@ from aiogram_dialog.widgets.kbd import (
     Select,
     SwitchTo,
     Toggle,
-    Url,
 )
-from aiogram_dialog.widgets.text import Format, Const
+from aiogram_dialog.widgets.text import Format
 
 from .getters import getter
 from .handlers import on_anncmt, on_customzn, on_language, on_main
 from .states import SettingsMenu
-from ..constants import TELEGRAM_LINK
 from ..extras.i18n.format import I18nFormat
 
 BACK_BTN: SwitchTo = SwitchTo(
@@ -27,15 +25,8 @@ def settings_menu() -> Dialog:
         Window(
             I18nFormat("settings-msg"),
             SwitchTo(I18nFormat("anncmt-btn"), "anncmt", SettingsMenu.ANNCMT),
+            SwitchTo(I18nFormat("language-btn"), "language", SettingsMenu.LANGUAGE),
             SwitchTo(I18nFormat("customzn-btn"), "customzn", SettingsMenu.CUSTOMZN),
-            Row(
-                Url(I18nFormat("support-btn"), id="support", url=Const(TELEGRAM_LINK)),
-                SwitchTo(
-                    I18nFormat("language-btn"),
-                    "language",
-                    SettingsMenu.LANGUAGE,
-                ),
-            ),
             Button(
                 I18nFormat("back-to-main-btn"),
                 id="to_main",

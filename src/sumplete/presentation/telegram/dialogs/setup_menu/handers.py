@@ -2,13 +2,12 @@ from aiogram.types import CallbackQuery, Message
 from aiogram_dialog import DialogManager, StartMode
 from dishka.integrations.aiogram import FromDishka
 
-from src.sumplete.adapters.database.uow.implement import UnitOfWork
-from src.sumplete.common.di.extras import inject_handler
-from src.sumplete.domain.game.schema import Setup
-from src.sumplete.domain.game.usecase import CreatePuzzle, SearchPuzzle
-from src.sumplete.presentation.telegram.dialogs.game_menu.states import GameMenu
-from src.sumplete.presentation.telegram.dialogs.mode_menu.states import ModeMenu
-from src.sumplete.presentation.telegram.dialogs.setup_menu.states import SetupMenu
+from sumplete.application.usecase.game import CreatePuzzle, SearchPuzzle, Setup
+from sumplete.infrastructure.database.uow.implement import UnitOfWork
+from sumplete.shared.di.extras import inject_handler
+from sumplete.presentation.telegram.dialogs.game_menu.states import GameMenu
+from sumplete.presentation.telegram.dialogs.mode_menu.states import ModeMenu
+from sumplete.presentation.telegram.dialogs.setup_menu.states import SetupMenu
 
 
 async def on_menu(_, __, dialog_manager: DialogManager):
@@ -85,9 +84,14 @@ async def on_confirm(
     puzzle_id = dialog_manager.dialog_data["puzzle_id"]
 
     puzzle = await uow.puzzle.search(puzzle_id)
-
     if not puzzle:
         return await query.answer(l10n.format_value("search-error-msg"))
+
+    solve = await uow.solve.check(
+        user_id=dialog_manager.event.from_user.id, puzzle_id=int(puzzle_id)
+    )
+    if solve:
+        return await dialog_manager.switch_to(SetupMenu.SOLVED)
 
     user = await uow.user.get(dialog_manager.event.from_user.id)
     pzle = await search(
@@ -99,6 +103,7 @@ async def on_confirm(
             complexity=puzzle.complexity,
         ),
     )
+
     return await dialog_manager.start(
         state=GameMenu.START,
         data={"meta": pzle["meta"], "field": pzle["field"]},
@@ -112,3 +117,38 @@ async def on_input(
     dialog_manager: DialogManager,
 ) -> None:
     print(message.text)
+
+
+async def on_no(
+    message: Message,
+    _,
+    dialog_manager: DialogManager,
+):
+    await dialog_manager.switch_to(SetupMenu.SEARCH)
+
+@inject_handler
+async def on_yes(
+    _,
+    __,
+    dialog_manager: DialogManager,
+    uow: FromDishka[UnitOfWork],
+    search: FromDishka[SearchPuzzle],
+):
+    puzzle_id = dialog_manager.dialog_data["puzzle_id"]
+    puzzle = await uow.puzzle.search(puzzle_id)
+    user = await uow.user.get(dialog_manager.event.from_user.id)
+    pzle = await search(
+        puzzle,
+        Setup(
+            locale=user.locale,
+            style=user.style,
+            size=puzzle.size,
+            complexity=puzzle.complexity,
+        ),
+    )
+
+    return await dialog_manager.start(
+        state=GameMenu.START,
+        data={"meta": pzle["meta"], "field": pzle["field"]},
+        mode=StartMode.RESET_STACK,
+    )

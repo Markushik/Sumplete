@@ -6,7 +6,7 @@ from ....middlewares.i18n import I18nMiddleware
 
 
 def locales_loader() -> I18nMiddleware:
-    path = Path.cwd().parent.joinpath("locales", "{locale}")
+    path = Path.cwd().joinpath("locales", "{locale}")
     loader = FluentResourceLoader(str(path))
 
     l10ns = {

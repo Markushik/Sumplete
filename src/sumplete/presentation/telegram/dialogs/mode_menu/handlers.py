@@ -2,11 +2,10 @@ from aiogram_dialog import DialogManager, StartMode
 from dishka.integrations.aiogram import FromDishka
 from numpy.random import choice, randint
 
-from src.sumplete.adapters.database.uow.implement import UnitOfWork
-from src.sumplete.common.di.extras import inject_handler
-from src.sumplete.domain.constants import complexity_ranges
-from src.sumplete.domain.game.schema import Setup
-from src.sumplete.domain.game.usecase import CreatePuzzle
+from sumplete.shared.constants.constants import complexity_ranges
+from sumplete.application.usecase.game import CreatePuzzle, Setup
+from sumplete.infrastructure.database.uow.implement import UnitOfWork
+from sumplete.shared.di.extras import inject_handler
 from ..game_menu.states import GameMenu
 from ..main_menu.states import MainMenu
 from ..setup_menu.states import SetupMenu
